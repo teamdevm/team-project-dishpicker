@@ -4,11 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DishPicker"
+        xmlns:vm="clr-namespace:DishPicker.ViewModel;assembly=DishPicker.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="750" Width="400"
+        Title="DishPicker" 
+        Height="750" Width="400"
         ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen"
-        FontFamily="Poppins SemiBold" Loaded="Window_Loaded">
+        FontFamily="Poppins SemiBold" Loaded="Window_Loaded"
+        >
+    
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+
     <Window.Background>
         <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0">
             <GradientStop Color="#212433" Offset="0.65" />
