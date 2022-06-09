@@ -4,14 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DishPicker"
-        xmlns:vm="clr-namespace:DishPicker.ViewModel;assembly=DishPicker.ViewModel"
+        xmlns:vm="clr-namespace:DishPicker.ViewModel"
         mc:Ignorable="d"
         Title="DishPicker" 
         Height="750" Width="400"
         ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen"
-        FontFamily="Poppins SemiBold" Loaded="Window_Loaded"
-        >
+        FontFamily="Poppins SemiBold">
     
     <Window.DataContext>
         <vm:MainViewModel/>
@@ -26,7 +25,7 @@
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="0.4*"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -55,8 +54,8 @@
             </Border.Background>
             <StackPanel  VerticalAlignment="Center"
                          Orientation="Vertical">
-                <TextBlock Name="txtbxTime" Text="19:17" FontSize="35" Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,10"/>
-                <TextBlock Name="txtbxDate" Text="ПН" FontSize="20" Foreground="#9394a0" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Name="txtbxTime" Text="{Binding Time}" FontSize="35" Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                <TextBlock Name="txtbxDate" Text="{Binding Day}" FontSize="20" Foreground="#9394a0" HorizontalAlignment="Center"></TextBlock>
             </StackPanel>
         </Border>
 
