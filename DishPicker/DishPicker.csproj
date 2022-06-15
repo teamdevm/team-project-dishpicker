@@ -10,12 +10,16 @@
     <None Remove="Fonts\Poppins-Light.ttf" />
     <None Remove="Fonts\Poppins-Regular.ttf" />
     <None Remove="Fonts\Poppins-SemiBold.ttf" />
+    <None Remove="Resources\edit.png" />
+    <None Remove="Resources\orange.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Fonts\Poppins-Light.ttf" />
     <Resource Include="Fonts\Poppins-Regular.ttf" />
     <Resource Include="Fonts\Poppins-SemiBold.ttf" />
+    <Resource Include="Resources\edit.png" />
+    <Resource Include="Resources\orange.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,10 +27,6 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Images\" />
   </ItemGroup>
 
 </Project>
