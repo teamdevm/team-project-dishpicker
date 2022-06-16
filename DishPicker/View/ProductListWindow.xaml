@@ -5,16 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DishPicker"
         xmlns:vm="clr-namespace:DishPicker.ViewModel"
+        xmlns:uc="clr-namespace:DishPicker.UserControls"
         mc:Ignorable="d"
         Title="DishPicker" 
         Height="750" Width="400"
         ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen"
-        FontFamily="Poppins SemiBold">
-    
-    <Window.DataContext>
-        <vm:MainViewModel/>
-    </Window.DataContext>
+        FontFamily="Poppins SemiBold" Closing="Window_Closing">
 
     <Window.Resources>
         <Style x:Key="BackButton" TargetType="{x:Type Button}">
@@ -37,6 +34,22 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="AddProductButton" TargetType="{x:Type Button}">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Content" Value="+"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     <Window.Background>
@@ -53,10 +66,10 @@
         </Grid.RowDefinitions>
         
         <StackPanel Orientation="Horizontal">
-            <Button Margin="7,0,0,0" Style="{StaticResource BackButton}"/>
-            <TextBlock Margin="10,0,0,0" Text="Список покупок" FontSize="25" Foreground="#b0afb4" VerticalAlignment="Center"/>
+            <Button Margin="7,0,0,0" Style="{StaticResource BackButton}" Click="Close_Click"/>
+            <TextBlock Margin="10,0,0,0" Text="Список продуктов" FontSize="25" Foreground="#b0afb4" VerticalAlignment="Center"/>
         </StackPanel>
-        
+
         <Border Grid.Row="1" CornerRadius="10" Margin="5">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
@@ -64,9 +77,39 @@
                     <GradientStop Color="#468ec8" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <WrapPanel ItemHeight="110" ItemWidth="65">
 
-            </WrapPanel>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="0.05*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.1*"/>
+                </Grid.ColumnDefinitions>
+
+                <ItemsControl Grid.ColumnSpan="2" Margin="5" ItemsSource="{Binding ProductsCurrent, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel ItemHeight="104" ItemWidth="72" IsItemsHost="True"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <uc:ProductUserControl/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <Button Grid.Row="1" Grid.Column="1" Click="AddProduct_Click">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <TextBlock Text="+" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="44" Foreground="White"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
         </Border>
     </Grid>
 </Window>

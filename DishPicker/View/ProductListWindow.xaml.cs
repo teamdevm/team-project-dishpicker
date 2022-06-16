@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DishPicker.View;
+using DishPicker.ViewModel;
 
 namespace DishPicker
 {
@@ -20,9 +22,29 @@ namespace DishPicker
     /// </summary>
     public partial class ProductListWindow : Window
     {
-        public ProductListWindow()
+        public ProductListWindow(object mvm)
         {
             InitializeComponent();
+            DataContext = mvm;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Owner.Show();
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            Owner.Show();
+            this.Close();
+        }
+
+        private void AddProduct_Click(object sender, RoutedEventArgs e)
+        {
+            ProductWindow productWindow = new ProductWindow(DataContext);
+            productWindow.Owner = this;
+            //this.Hide();
+            productWindow.Show();
         }
     }
 }

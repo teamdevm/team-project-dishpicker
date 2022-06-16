@@ -5,14 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DishPicker.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="110" d:DesignWidth="65">
+             d:DesignHeight="106" d:DesignWidth="74">
+
     <UserControl.Resources>
-        <Image x:Key="Icon" Source="../Resources/edit.png"/>
-        <Style TargetType="{x:Type Label}">
+        <Style TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" Value="10"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
+
         <Style TargetType="{x:Type Button}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -25,9 +26,9 @@
     </UserControl.Resources>
 
     <StackPanel Orientation="Vertical">
-        <Image Source="../Resources/orange.png" HorizontalAlignment="Center" Width="50"/>
-        <Label Content="Апельсин"/>
-        <Label Content="500 грамм" Foreground="#7786a6"/>
+        <Image Source="{Binding Source}" HorizontalAlignment="Center" Width="50" Height="50"/>
+        <TextBlock Text="{Binding Name}" Margin="0,0,0,5"/>
+        <TextBlock Text="{Binding Weight}" Margin="0,0,0,5" Foreground="#7786a6"/>
         <Button Width="12"/>
     </StackPanel>
 </UserControl>

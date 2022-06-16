@@ -1,0 +1,67 @@
+﻿<Window x:Class="DishPicker.View.ProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DishPicker"
+        xmlns:vm="clr-namespace:DishPicker.ViewModel"
+        mc:Ignorable="d"
+        Title="DishPicker" 
+        Height="200" Width="250"
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Poppins SemiBold" Foreground="#b4b5b1">
+
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="5" Margin="5">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Color="#27395a" Offset="0"/>
+                                    <GradientStop Color="#468ec8" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+
+                            <TextBlock Text="Добавить" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b4b5b1"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0">
+            <GradientStop Color="#212433" Offset="0.65" />
+            <GradientStop Color="#4e5164" Offset="1" />
+        </LinearGradientBrush>
+    </Window.Background>
+    
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,0,5,0" Text="Продукт:" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <ComboBox SelectedItem="{Binding SelectedProduct, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding ProductsList}" Grid.Row="0" Grid.Column="1" Height="20"
+                  DisplayMemberPath="Name" FontSize="10"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,0,5,0" Text="Количество:" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <TextBox Text="{Binding CountProduct, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" Height="20" UndoLimit="5" FontSize="10" />
+        <Button Grid.Row="2" Grid.Column="0" Command="{Binding OnAddCommand}"/>
+    </Grid>
+    
+</Window>
+    

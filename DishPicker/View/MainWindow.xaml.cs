@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DishPicker.ViewModel;
 
 namespace DishPicker
 {
@@ -23,6 +24,15 @@ namespace DishPicker
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainViewModel();
+        }
+
+        private void OpenProductWindow_Click(object sender, RoutedEventArgs e)
+        {
+            ProductListWindow productWindow = new ProductListWindow(DataContext);
+            productWindow.Owner = this;
+            this.Hide();
+            productWindow.Show();
         }
     }
 }

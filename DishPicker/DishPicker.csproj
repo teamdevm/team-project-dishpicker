@@ -11,6 +11,7 @@
     <None Remove="Fonts\Poppins-Regular.ttf" />
     <None Remove="Fonts\Poppins-SemiBold.ttf" />
     <None Remove="Resources\edit.png" />
+    <None Remove="Resources\milk.png" />
     <None Remove="Resources\orange.png" />
   </ItemGroup>
 
@@ -19,6 +20,7 @@
     <Resource Include="Fonts\Poppins-Regular.ttf" />
     <Resource Include="Fonts\Poppins-SemiBold.ttf" />
     <Resource Include="Resources\edit.png" />
+    <Resource Include="Resources\milk.png" />
     <Resource Include="Resources\orange.png" />
   </ItemGroup>
 

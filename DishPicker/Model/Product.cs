@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DishPicker.Model
 {
-    class Product
+    public class Product
     {
         // Название продукта
         public string Name { get; set; }
@@ -15,12 +15,16 @@ namespace DishPicker.Model
         // Масса продукта
         public int Weight { get; set; }
 
+        // Ссылка на картинку
+        public string Source { get; set; }
+
         // Конструктор
-        public Product( string name, int kkal, int weight)
+        public Product( string name, int kkal, int weight, string source)
         {
             Name = name;
             Kkal = kkal;
             Weight = weight;
+            Source = source;
         }
     }
 }
