@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DishPicker.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="106" d:DesignWidth="74">
+             d:DesignHeight="110" d:DesignWidth="69">
 
     <UserControl.Resources>
         <Style TargetType="{x:Type TextBlock}">

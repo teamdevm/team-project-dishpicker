@@ -91,7 +91,7 @@
                 <ItemsControl Grid.ColumnSpan="2" Margin="5" ItemsSource="{Binding ProductsCurrent, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <WrapPanel ItemHeight="104" ItemWidth="72" IsItemsHost="True"/>
+                            <WrapPanel ItemHeight="120" ItemWidth="69" IsItemsHost="True"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
 

@@ -34,7 +34,7 @@ namespace DishPicker.ViewModel
         private int _countProduct = 100;
         public int CountProduct { get => _countProduct; set => Set(ref _countProduct, value); }
 
-        public ICommand OnAddCommand => new RelayCommand(OnAdd);
+        public ICommand OnAddCommand => new RelayCommand(OnAdd, _ => ProductsCurrent.Count < 25);
 
         private void OnAdd(object obj)
         {
@@ -49,7 +49,6 @@ namespace DishPicker.ViewModel
             }
         }
 
-
         // Конструктор
         public MainViewModel() 
         {
@@ -62,6 +61,9 @@ namespace DishPicker.ViewModel
 
             _time = DateTime.Now.ToString("HH:mm");
             _day = ConvertDay();
+
+            //for (var i = 0; i < 40; i++)
+            //    ProductsCurrent.Add(new Product("",111,111,"../Resources/orange.png"));
         }
 
         private static string ConvertDay()
