@@ -45,7 +45,7 @@ namespace DishPicker
 
         private void AddProduct_Click(object sender, RoutedEventArgs e)
         {
-            ProductWindow productWindow = new ProductWindow(DataContext);
+            AddProductWindow productWindow = new AddProductWindow(DataContext);
             productWindow.Owner = this;
             //this.Hide();
             productWindow.Show();

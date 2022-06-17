@@ -16,11 +16,13 @@ namespace DishPicker.ViewModel
         private ObservableCollection<Product> _productsCurrent = new ObservableCollection<Product>();
         public ObservableCollection<Product> ProductsCurrent { get => _productsCurrent; set => Set(ref _productsCurrent, value); }
 
-        public List<Product> ProductsList { get; } = new List<Product>()
+        private ObservableCollection<AddableProduct> _productsList = new ObservableCollection<AddableProduct>()
         {
-            new Product("Апельсин", 47, 100, "../Resources/orange.png"),
-            new Product("Молоко", 42, 500, "../Resources/milk.png")
+            new AddableProduct("Апельсин", 47, 100, "../Resources/orange.png"),
+            new AddableProduct("Молоко", 42, 500, "../Resources/milk.png")
         };
+
+        public ObservableCollection<AddableProduct> ProductsList { get => _productsList; set => Set(ref _productsList, value); }
 
         private string _time;
         private string _day;
@@ -41,7 +43,7 @@ namespace DishPicker.ViewModel
             ProductsCurrent.Add(new Product(_selectedProduct.Name, _selectedProduct.Kkal, _countProduct, _selectedProduct.Source));
             foreach (Window window in Application.Current.Windows)
             {
-                if (window is ProductWindow)
+                if (window is AddProductWindow)
                 {
                     window.Owner.Show();
                     window.Close();

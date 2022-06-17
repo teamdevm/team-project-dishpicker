@@ -18,6 +18,11 @@ namespace DishPicker.Model
         // Ссылка на картинку
         public string Source { get; set; }
 
+        public Product()
+        {
+
+        }
+
         // Конструктор
         public Product( string name, int kkal, int weight, string source)
         {
