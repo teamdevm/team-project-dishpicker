@@ -144,7 +144,7 @@
             <StackPanel  VerticalAlignment="Center"
                          Orientation="Vertical" Margin="10" Height="110">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Продукты" FontSize="25" Foreground="White"/>
+                    <TextBlock Text="Продукты" FontSize="24" Foreground="White"/>
                     <Button Style="{StaticResource IntoButton}" VerticalAlignment="Center" Click="OpenProductWindow_Click"/>
                 </StackPanel>
                 <ItemsControl ItemsSource="{Binding ProductsCurrent, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
@@ -175,7 +175,7 @@
             <StackPanel  VerticalAlignment="Center"
                          Orientation="Vertical" Margin="10" Height="110">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Рецепты" FontSize="25" Foreground="White"/>
+                    <TextBlock Text="Рецепты" FontSize="24" Foreground="White"/>
                 </StackPanel>
                 <TextBlock Margin="0,20,0,0" Text="Перечисление рецептов" FontSize="20" Foreground="White"/>
                 
@@ -195,7 +195,7 @@
                          Orientation="Vertical" Margin="10" Height="110">
                 
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Список покупок" FontSize="25" Foreground="White"/>
+                    <TextBlock Text="Список покупок" FontSize="24" Foreground="White"/>
                 </StackPanel>
                 <TextBlock Margin="0,20,0,0" Text="Перечисление списка покупок" FontSize="20" Foreground="White"/>
             </StackPanel>
