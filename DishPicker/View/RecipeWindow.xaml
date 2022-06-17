@@ -17,6 +17,29 @@
         <vm:MainViewModel/>
     </Window.DataContext>-->
 
+    <Window.Resources>
+        <Style x:Key="BackButton" TargetType="{x:Type Button}">
+            <Setter Property="FontSize" Value="27"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Content" Value="&lt;"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Ellipse HorizontalAlignment="Stretch"
+                                     VerticalAlignment="Stretch"
+                                     StrokeThickness="1"
+                                     Fill="#394265"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Window.Background>
         <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0">
             <GradientStop Color="#212433" Offset="0.65" />
@@ -25,6 +48,74 @@
     </Window.Background>
 
     <Grid Margin="10">
-       
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="335*"/>
+            <ColumnDefinition Width="46*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0,0,649" Grid.RowSpan="2">
+
+            <!--Кнопка Назад-->
+            <StackPanel  Width="40" Height="40" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" >
+                <Image Source="C:\Users\admin\Desktop\мскрпс\лаб\DishPicker\team-project-dishpicker\DishPicker\картинки\Group 24.png" />
+            </StackPanel>
+
+            <!--Button Margin="7,0,0,0" Style="{StaticResource BackButton}"/-->
+            <TextBlock Margin="10,0,0,0" Text="Фруктовый салат" FontSize="25" Foreground="#B4B4B4" VerticalAlignment="Center"/>
+        </StackPanel>
+        <Border Grid.Row="1" CornerRadius="10" Margin="5,5,5,5" Grid.ColumnSpan="2">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#27395a" Offset="0"/>
+                    <GradientStop Color="#468ec8" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Canvas >
+                <!--Картинка блюда-->
+                <Image  Width="280" Height="170" HorizontalAlignment="Center" Canvas.Top="20" Canvas.Left="45" Source="C:\Users\admin\Desktop\мскрпс\лаб\DishPicker\team-project-dishpicker\DishPicker\картинки\fruit salad.png" />
+                <!--Ингредиенты:-->
+                <TextBlock Canvas.Top="197" Canvas.Left="112" Margin="10,0,0,0" Text="Ингредиенты:" FontSize="20" Foreground="#F5F5F5"/>
+                <TextBlock Canvas.Top="220" Canvas.Left="40" Margin="10,0,0,0" Text="Ингредиенты:" FontSize="13" Foreground="#F5F5F5"/>
+                <TextBlock Canvas.Top="220" Canvas.Left="190" Margin="10,0,0,0" Text="Масса:" FontSize="13" Foreground="#F5F5F5"/>
+                <TextBlock Canvas.Top="220" Canvas.Left="267" Margin="10,0,0,0" Text="Ед.изм:" FontSize="13" Foreground="#F5F5F5"/>
+                <Grid Canvas.Top="240" Canvas.Left="25" ShowGridLines="False" Width="317">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="157*"></ColumnDefinition>
+                        <ColumnDefinition Width="70*"></ColumnDefinition>
+                        <ColumnDefinition Width="90*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text="300" FontSize="13" Foreground="#000000"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Груши" Margin="10,0,0,0" FontSize="13" Foreground="#000000"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Text="гр" FontSize="13" Foreground="#000000"/>
+                    <TextBlock Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Йогурт натуральный" Margin="10,0,0,0" FontSize="13" Foreground="#000000"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Бананы" Margin="10,0,0,0" FontSize="13" Foreground="#000000"/>
+                    <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Яблоки" Margin="10,0,0,0" FontSize="13" Foreground="#000000"/>
+                </Grid>
+                <TextBlock Canvas.Top="360" Canvas.Left="99" Margin="10,0,0,0" Text="Приготовление:" FontSize="20" Foreground="#F5F5F5"/>
+                <ScrollViewer Canvas.Top="390" Canvas.Left="15" VerticalScrollBarVisibility="Auto" Name="sv1" Width="345">
+                    <TextBlock  TextWrapping = "Wrap"  FontSize="13" Foreground="#F5F5F5" Height="235" Width="320" 
+                >1. Сначала очищаем гранат и кладём в миску 100 г его зёрен.
+                    <LineBreak />
+2. Нарезаем по 150 г яблок и груш кубиками среднего размера.. Добавляем их к гранату
+                    <LineBreak />
+3. Очищаем киви и нарезаем 150 г кубиками аналогичного с яблоками размера. Затем очищаем мандарины, разделяем их на дольки, удаляем белую клетчатку, отмеряем 150 г и также нарезаем их. Если дольки небольшие, то режем на 2 части, если большие — то на 3 или 4 части. Проводим те же манипуляции с бананом — очищаем и нарезаем 150 г.
+<LineBreak />
+                    4. Аккуратно, стараясь не повредить нежные кусочки перемешиваем салат.
+                    <LineBreak />
+5. Для одной порции берём небольшую мисочку, накладываем немного фруктов, затем добавляем сверху немного йогурта, повторяем эти действия ещё один раз и укладываем на самый верх немного кусочков фруктов из салата.:
+                    </TextBlock>
+                </ScrollViewer>
+            </Canvas>
+        </Border>
     </Grid>
 </Window>
