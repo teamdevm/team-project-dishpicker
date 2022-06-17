@@ -4,6 +4,7 @@ using System.Text;
 
 namespace DishPicker.Model
 {
+    [Serializable]
     public class Product
     {
         // Название продукта

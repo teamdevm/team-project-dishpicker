@@ -11,7 +11,7 @@
         Height="750" Width="400"
         ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen"
-        FontFamily="Poppins SemiBold">
+        FontFamily="Poppins SemiBold" Closing="Window_Closing">
     
     <Window.DataContext>
         <vm:MainViewModel/>
