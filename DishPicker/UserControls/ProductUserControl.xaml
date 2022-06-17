@@ -10,10 +10,25 @@
              d:DesignHeight="110" d:DesignWidth="69">
 
     <UserControl.Resources>
+        <Color x:Key="detailMark">#FFA1A9B3</Color>
+        <SolidColorBrush x:Key="detailMarkBrush" Color="{StaticResource ResourceKey=detailMark}" />
+
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" Value="10"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                        <Border CornerRadius="2" Padding="0" Background="#19212F" BorderBrush="Black" BorderThickness="0.5">
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <Style x:Key="editButton" TargetType="{x:Type Button}">
@@ -39,11 +54,11 @@
     <StackPanel Orientation="Vertical">
         <Image Source="{Binding Source}" HorizontalAlignment="Center" Width="50" Height="50"/>
         <TextBlock Text="{Binding Name}" Margin="0,0,0,5"/>
-        <TextBlock Text="{Binding Weight}" Margin="0,0,0,5" Foreground="#7786a6"/>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <TextBox Text="{Binding Weight, UpdateSourceTrigger=LostFocus}" MaxLength="5" Width="45" Margin="0,0,0,5" Foreground="White"/>
+        <!--<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button Width="12" Style="{StaticResource editButton}" Margin="0,0,10,0"/>
             <Button Width="12" Style="{StaticResource deleteButton}" Click="Button_Click">
             </Button>
-        </StackPanel>
+        </StackPanel>-->
     </StackPanel>
 </UserControl>

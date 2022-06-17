@@ -31,14 +31,39 @@ namespace DishPicker.View
         {
             foreach (var product in (DataContext as MainViewModel).ProductsList)
             {
-                if(product.Ischecked)
-                    (DataContext as MainViewModel).ProductsCurrent.Add(new Product(product.Name, product.Kkal, product.Weight ,product.Source));
-            }
-            foreach (var product in (DataContext as MainViewModel).ProductsList)
-            {
                 if (product.Ischecked)
-                    product.Ischecked = false;
+                {
+                    bool isExists = false;
+                    foreach (var productCurrent in (DataContext as MainViewModel).ProductsCurrent)
+                    {
+                        if (productCurrent.Name == product.Name)
+                        {
+                            isExists = true;
+                            break;
+                        }
+                    }
+                    if(!isExists)
+                        (DataContext as MainViewModel).ProductsCurrent.Add(new Product(product.Name, product.Kkal, product.Weight, product.Source));
+                }
+
+                if (!product.Ischecked)
+                {
+                    foreach (var productCurrent in (DataContext as MainViewModel).ProductsCurrent)
+                    {
+                        if (productCurrent.Name == product.Name)
+                        {
+                            (DataContext as MainViewModel).ProductsCurrent.Remove(productCurrent);
+                            break;
+                        }
+                    }
+                        
+                }
             }
+            //foreach (var product in (DataContext as MainViewModel).ProductsList)
+            //{
+            //    if (product.Ischecked)
+            //        product.Ischecked = false;
+            //}
         }
     }
 }
