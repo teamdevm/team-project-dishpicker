@@ -22,5 +22,7 @@ namespace DishPicker.Model
             Ingredients = ingredients;
             Description = description;
         }
+
+
     }
 }

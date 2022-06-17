@@ -14,12 +14,13 @@ namespace DishPicker.ViewModel
     public class MainViewModel : BaseViewModel
     {
         private ObservableCollection<Product> _productsCurrent = new ObservableCollection<Product>();
+        // Продукты у пользователя
         public ObservableCollection<Product> ProductsCurrent { get => _productsCurrent; set => Set(ref _productsCurrent, value); }
 
         public List<Product> ProductsList { get; } = new List<Product>()
         {
             new Product("Апельсин", 47, 100, "../Resources/orange.png"),
-            new Product("Молоко", 42, 500, "../Resources/milk.png")
+            new Product("Молоко", 42, 100, "../Resources/milk.png")
         };
 
         private string _time;
