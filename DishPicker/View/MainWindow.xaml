@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DishPicker"
         xmlns:vm="clr-namespace:DishPicker.ViewModel"
+        xmlns:uc="clr-namespace:DishPicker.UserControls"
         mc:Ignorable="d"
         Title="DishPicker" 
         Height="750" Width="400"
@@ -22,6 +23,30 @@
             <GradientStop Color="#4e5164" Offset="1" />
         </LinearGradientBrush>
     </Window.Background>  
+
+    <Window.Resources>
+        <Style x:Key="IntoButton" TargetType="{x:Type Button}">
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Content" Value="&gt;"/>
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Margin" Value="10,0,0,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Ellipse HorizontalAlignment="Stretch"
+                                     VerticalAlignment="Stretch"
+                                     StrokeThickness="1"
+                                     Fill="#394265"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -54,8 +79,8 @@
             </Border.Background>
             <StackPanel  VerticalAlignment="Center"
                          Orientation="Vertical">
-                <TextBlock Name="txtbxTime" Text="{Binding Time}" FontSize="35" Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,10"/>
-                <TextBlock Name="txtbxDate" Text="{Binding Day}" FontSize="20" Foreground="#9394a0" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Name="txtbxTime" Text="{Binding Time, UpdateSourceTrigger=PropertyChanged}" FontSize="35" Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                <TextBlock Name="txtbxDate" Text="{Binding Day, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Foreground="#9394a0" HorizontalAlignment="Center"></TextBlock>
             </StackPanel>
         </Border>
 
@@ -120,8 +145,21 @@
                          Orientation="Vertical" Margin="10" Height="110">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Продукты" FontSize="25" Foreground="White" FontFamily="Poppins SemiBold"/>
+                    <Button Style="{StaticResource IntoButton}" VerticalAlignment="Center" Click="OpenProductWindow_Click"/>
                 </StackPanel>
-                <TextBlock Margin="0,20,0,0" Text="Перечисление продуктов" FontSize="20" Foreground="White"/>
+                <ItemsControl ItemsSource="{Binding ProductsCurrent, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" IsItemsHost="True"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <uc:ProductUserControl Height="70" Width="70"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </StackPanel>
         </Border>
 
@@ -136,7 +174,6 @@
 
             <StackPanel  VerticalAlignment="Center"
                          Orientation="Vertical" Margin="10" Height="110">
-                
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Рецепты" FontSize="25" Foreground="White"/>
                 </StackPanel>
