@@ -11,7 +11,7 @@
         Height="750" Width="400"
         ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen"
-        FontFamily="Poppins SemiBold" Closing="Window_Closing">
+        FontFamily="../Fonts/#Poppins SemiBold" Closing="Window_Closing">
     
     <Window.DataContext>
         <vm:MainViewModel/>
@@ -144,7 +144,7 @@
             <StackPanel  VerticalAlignment="Center"
                          Orientation="Vertical" Margin="10" Height="110">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Продукты" FontSize="25" Foreground="White" FontFamily="Poppins SemiBold"/>
+                    <TextBlock Text="Продукты" FontSize="25" Foreground="White"/>
                     <Button Style="{StaticResource IntoButton}" VerticalAlignment="Center" Click="OpenProductWindow_Click"/>
                 </StackPanel>
                 <ItemsControl ItemsSource="{Binding ProductsCurrent, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
