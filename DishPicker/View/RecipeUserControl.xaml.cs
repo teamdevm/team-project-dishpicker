@@ -8,23 +8,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace DishPicker.View
 {
     /// <summary>
-    /// Логика взаимодействия для RecipeWindow.xaml
+    /// Логика взаимодействия для RecipeUserControl.xaml
     /// </summary>
-    public partial class RecipeWindow : Window
+    public partial class RecipeUserControl : UserControl
     {
-        public RecipeWindow()
+        public RecipeUserControl()
         {
             InitializeComponent();
-        }
-
-        private void InitializeComponent()
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -13,18 +13,13 @@ using System.Windows.Shapes;
 namespace DishPicker.View
 {
     /// <summary>
-    /// Логика взаимодействия для RecipeWindow.xaml
+    /// Логика взаимодействия для GeneratedRecipeWindow.xaml
     /// </summary>
-    public partial class RecipeWindow : Window
+    public partial class GeneratedRecipeWindow : Window
     {
-        public RecipeWindow()
+        public GeneratedRecipeWindow()
         {
             InitializeComponent();
-        }
-
-        private void InitializeComponent()
-        {
-            throw new NotImplementedException();
         }
     }
 }
