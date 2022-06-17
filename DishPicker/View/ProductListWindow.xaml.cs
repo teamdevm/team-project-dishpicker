@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DishPicker.UserControls;
 using DishPicker.View;
 using DishPicker.ViewModel;
 
@@ -22,9 +23,12 @@ namespace DishPicker
     /// </summary>
     public partial class ProductListWindow : Window
     {
+        public object Mvm { get; set; }
+
         public ProductListWindow(object mvm)
         {
             InitializeComponent();
+            Mvm = mvm;
             DataContext = mvm;
         }
 

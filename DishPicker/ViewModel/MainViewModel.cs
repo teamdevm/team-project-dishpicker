@@ -49,6 +49,13 @@ namespace DishPicker.ViewModel
             }
         }
 
+        public ICommand OnDeleteCommand => new RelayCommand(OnDelete);
+
+        private void OnDelete(object obj)
+        {
+            ProductsCurrent.Remove(obj as Product);
+        }
+
         // Конструктор
         public MainViewModel() 
         {
