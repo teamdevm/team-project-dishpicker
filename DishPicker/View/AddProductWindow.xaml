@@ -13,7 +13,7 @@
 
     <Window.Resources>
         <Style x:Key="Text" TargetType="{x:Type TextBlock}">
-            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontSize" Value="10"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Height" Value="30"/>

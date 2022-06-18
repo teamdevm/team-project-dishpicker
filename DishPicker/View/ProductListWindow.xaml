@@ -22,30 +22,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <!--<Grid>
-                            <Ellipse HorizontalAlignment="Stretch"
-                                     VerticalAlignment="Stretch"
-                                     StrokeThickness="1"
-                                     Fill="#394265"/>
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Grid>-->
                         <Image Source="../Resources/Service/backArrow.png"/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style x:Key="AddProductButton" TargetType="{x:Type Button}">
-            <Setter Property="FontSize" Value="30"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Content" Value="+"/>
-            <Setter Property="Width" Value="40"/>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid>
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -78,29 +55,27 @@
                 </LinearGradientBrush>
             </Border.Background>
 
-            <Grid Grid.Row="1">
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition Height="0.05*"/>
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+                
+                <ScrollViewer Grid.Row="0" CanContentScroll="True" VerticalScrollBarVisibility="Hidden">
+                    <ItemsControl Margin="5" ItemsSource="{Binding ProductsCurrent, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel ItemHeight="130" ItemWidth="83" IsItemsHost="True"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
 
-                <ItemsControl Margin="5" ItemsSource="{Binding ProductsCurrent, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel ItemHeight="120" ItemWidth="69" IsItemsHost="True"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <uc:ProductUserControl MyDataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <uc:ProductUserControl MyDataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
                 <Button Width="50" Grid.Row="1" Grid.Column="0" Click="AddProduct_Click">
                     <Button.Template>
                         <ControlTemplate>
