@@ -4,30 +4,27 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DishPicker"
-        xmlns:vm="clr-namespace:DishPicker.ViewModel"
         mc:Ignorable="d"
         Title="DishPicker" 
-        Height="400" Width="360"
+        Height="500" Width="400"
         ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen"
         FontFamily="Poppins SemiBold" Foreground="#b4b5b1" Closing="Window_Closing">
 
-    <Window.DataContext>
-        <vm:MainViewModel/>
-    </Window.DataContext>
-
     <Window.Resources>
-        <Style TargetType="{x:Type TextBlock}">
-            <Setter Property="FontSize" Value="10"/>
+        <Style x:Key="Text" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="11"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Height" Value="30"/>
+            
         </Style>
         <Style TargetType="{x:Type CheckBox}" x:Key="CheckboxStyle">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type CheckBox}">
                         <StackPanel Orientation="Horizontal">
-                            <Image x:Name="checkboxImage" Source="../Resources/uncheck.png" Width="16"/>
+                            <Image x:Name="checkboxImage" Source="../Resources/Service/uncheck.png" Width="16"/>
                             <ContentPresenter/>
                         </StackPanel>
                         <ControlTemplate.Triggers>
@@ -36,14 +33,14 @@
                                     <Condition Property="IsEnabled" Value="True"/>
                                     <Condition Property="IsChecked" Value="False"/>
                                 </MultiTrigger.Conditions>
-                                <Setter TargetName="checkboxImage" Property="Source" Value="../Resources/uncheck.png"/>
+                                <Setter TargetName="checkboxImage" Property="Source" Value="../Resources/Service/uncheck.png"/>
                             </MultiTrigger>
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
                                     <Condition Property="IsEnabled" Value="True"/>
                                     <Condition Property="IsChecked" Value="True"/>
                                 </MultiTrigger.Conditions>
-                                <Setter TargetName="checkboxImage" Property="Source" Value="../Resources/check.png"/>
+                                <Setter TargetName="checkboxImage" Property="Source" Value="../Resources/Service/check.png"/>
                             </MultiTrigger>
                             <!-- For disabled state. -->
                             <MultiTrigger>
@@ -51,14 +48,14 @@
                                     <Condition Property="IsEnabled" Value="False"/>
                                     <Condition Property="IsChecked" Value="False"/>
                                 </MultiTrigger.Conditions>
-                                <Setter TargetName="checkboxImage" Property="Source" Value="../Resources/uncheck.png"/>
+                                <Setter TargetName="checkboxImage" Property="Source" Value="../Resources/Service/uncheck.png"/>
                             </MultiTrigger>
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
                                     <Condition Property="IsEnabled" Value="False"/>
                                     <Condition Property="IsChecked" Value="True"/>
                                 </MultiTrigger.Conditions>
-                                <Setter TargetName="checkboxImage" Property="Source" Value="../Resources/check.png"/>
+                                <Setter TargetName="checkboxImage" Property="Source" Value="../Resources/Service/check.png"/>
                             </MultiTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -73,24 +70,25 @@
             <GradientStop Color="#4e5164" Offset="1" />
         </LinearGradientBrush>
     </Window.Background>
+    <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Hidden">
+        <ItemsControl Margin="5" ItemsSource="{Binding CurrentAddableProducts, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel ItemHeight="130" ItemWidth="75" IsItemsHost="True"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
 
-    <ItemsControl Margin="5" ItemsSource="{Binding ProductsList, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
-        <ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-                <WrapPanel ItemHeight="100" ItemWidth="70" IsItemsHost="True"/>
-            </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
-
-        <ItemsControl.ItemTemplate>
-            <DataTemplate>
-                <StackPanel Orientation="Vertical" >
-                    <Image Source="{Binding Source}" HorizontalAlignment="Center" Height="50"/>
-                    <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"/>
-                    <CheckBox IsChecked="{Binding Ischecked}" Style="{StaticResource CheckboxStyle}" Margin="0,10,0,0" HorizontalAlignment="Center"/>
-                </StackPanel>
-            </DataTemplate>
-        </ItemsControl.ItemTemplate>
-    </ItemsControl>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding Source}" HorizontalAlignment="Center" Height="50"/>
+                        <TextBlock Text="{Binding Name}" Style="{StaticResource Text}" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                        <CheckBox IsChecked="{Binding Ischecked}" VerticalAlignment="Top" Style="{StaticResource CheckboxStyle}" Margin="0,10,0,0" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </ScrollViewer>
 
 </Window>
     

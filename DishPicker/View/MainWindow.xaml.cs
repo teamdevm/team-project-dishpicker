@@ -39,14 +39,6 @@ namespace DishPicker
                     (DataContext as MainViewModel).ProductsCurrent = formatter.Deserialize(fs) as ObservableCollection<Product>;
                 }
             }
-            if (File.Exists("AddingProduct.xml"))
-            {
-                using (FileStream fs = new FileStream("AddingProduct.xml", FileMode.OpenOrCreate))
-                {
-                    var formatter = new XmlSerializer(typeof(ObservableCollection<AddableProduct>));
-                    (DataContext as MainViewModel).ProductsList = formatter.Deserialize(fs) as ObservableCollection<AddableProduct>;
-                }
-            }
         }
 
         private void OpenProductWindow_Click(object sender, RoutedEventArgs e)
@@ -64,13 +56,6 @@ namespace DishPicker
             {
                 XmlSerializer formatter = new XmlSerializer(typeof(ObservableCollection<Product>));
                 formatter.Serialize(fs, (DataContext as MainViewModel).ProductsCurrent);
-            }
-
-            // сохранение массива добавляемых продуктов в файл
-            using (FileStream fs = new FileStream("AddingProduct.xml", FileMode.Create))
-            {
-                XmlSerializer formatter = new XmlSerializer(typeof(ObservableCollection<AddableProduct>));
-                formatter.Serialize(fs, (DataContext as MainViewModel).ProductsList);
             }
         }
     }

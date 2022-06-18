@@ -35,13 +35,18 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid>
+                        <!--<Grid>
                             <Ellipse HorizontalAlignment="Stretch"
                                      VerticalAlignment="Stretch"
                                      StrokeThickness="1"
                                      Fill="#394265"/>
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Grid>
+                        </Grid>-->
+                        <Image Source="../Resources/Service/backArrow.png" RenderTransformOrigin="0.5,0.5">
+                            <Image.RenderTransform>
+                                <RotateTransform Angle="180"/>
+                            </Image.RenderTransform>
+                        </Image>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

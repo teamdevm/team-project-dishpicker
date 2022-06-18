@@ -25,11 +25,12 @@ namespace DishPicker.View
         {
             InitializeComponent();
             DataContext = mvm;
+            (mvm as MainViewModel)?.OnCalcAddableProduct();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            foreach (var product in (DataContext as MainViewModel).ProductsList)
+            foreach (var product in (DataContext as MainViewModel).CurrentAddableProducts)
             {
                 if (product.Ischecked)
                 {
@@ -59,11 +60,6 @@ namespace DishPicker.View
                         
                 }
             }
-            //foreach (var product in (DataContext as MainViewModel).ProductsList)
-            //{
-            //    if (product.Ischecked)
-            //        product.Ischecked = false;
-            //}
         }
     }
 }

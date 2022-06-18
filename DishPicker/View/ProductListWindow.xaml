@@ -22,13 +22,14 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid>
+                        <!--<Grid>
                             <Ellipse HorizontalAlignment="Stretch"
                                      VerticalAlignment="Stretch"
                                      StrokeThickness="1"
                                      Fill="#394265"/>
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Grid>
+                        </Grid>-->
+                        <Image Source="../Resources/Service/backArrow.png"/>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -103,7 +104,7 @@
                 <Button Width="50" Grid.Row="1" Grid.Column="0" Click="AddProduct_Click">
                     <Button.Template>
                         <ControlTemplate>
-                            <TextBlock Text="+" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="44" Foreground="White"/>
+                            <Image Source="../Resources/Service/add.png"/>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
