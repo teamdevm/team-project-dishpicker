@@ -179,7 +179,7 @@
         </Border>
 
         <!--Список покупок-->
-        <Border Margin="5" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" CornerRadius="15">
+        <Border Margin="5" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" CornerRadius="15">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                     <GradientStop Color="#27395a" Offset="0"/>
@@ -189,11 +189,23 @@
 
             <StackPanel  VerticalAlignment="Center"
                          Orientation="Vertical" Margin="10" Height="110">
-                
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Список покупок" FontSize="24" Foreground="White"/>
+                    <TextBlock Text="Покупки" FontSize="24" Foreground="White"/>
+                    <Button Style="{StaticResource IntoButton}" VerticalAlignment="Center" Click="OpenPurchaseWindow_Click"/>
                 </StackPanel>
-                <TextBlock Margin="0,20,0,0" Text="Перечисление списка покупок" FontSize="20" Foreground="White"/>
+                <ItemsControl ItemsSource="{Binding PurchasesCurrent, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" IsItemsHost="True"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <uc:ProductUserControl Height="70" Width="70"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </StackPanel>
         </Border>
     </Grid>

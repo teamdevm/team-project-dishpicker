@@ -71,7 +71,7 @@
         </LinearGradientBrush>
     </Window.Background>
     <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Hidden">
-        <ItemsControl Margin="5" ItemsSource="{Binding CurrentAddableProducts, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
+        <ItemsControl Margin="5" x:Name="ItemsControl">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel ItemHeight="130" ItemWidth="75" IsItemsHost="True"/>

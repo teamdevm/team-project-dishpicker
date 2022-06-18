@@ -12,10 +12,15 @@ namespace DishPicker.Model
         public AddableProduct(string name, int kkal, int weight, string source, bool ischecked = false) : base(name, kkal, weight, source)
         {
         }
-
+        
         public AddableProduct()
         {
 
+        }
+
+        public AddableProduct Clone()
+        {
+            return new AddableProduct(Name, Kkal, Weight, Source, false);
         }
     }
 }

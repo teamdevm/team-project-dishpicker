@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
@@ -13,11 +14,18 @@ namespace DishPicker.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
-        private ObservableCollection<Product> _productsCurrent = new ObservableCollection<Product>();
+        #region Коллекции для продуктов
+        
         // Продукты у пользователя
+        private ObservableCollection<Product> _productsCurrent = new ObservableCollection<Product>();
         public ObservableCollection<Product> ProductsCurrent { get => _productsCurrent; set => Set(ref _productsCurrent, value); }
 
-        private List<AddableProduct> _productsList = new List<AddableProduct>()
+        // Покупки у пользователя
+        private ObservableCollection<Product> _purchasesCurrent = new ObservableCollection<Product>();
+        public ObservableCollection<Product> PurchasesCurrent { get => _purchasesCurrent; set => Set(ref _purchasesCurrent, value); }
+
+        // Список продуктов, которые можно использовать
+        private readonly List<AddableProduct> _productsList = new List<AddableProduct>()
         {
             new AddableProduct("Апельсин", 38, 100, "../Resources/Ingredients/orange.png"),
             new AddableProduct("Баклажаны", 24, 100, "../Resources/Ingredients/eggplant.png"),
@@ -57,9 +65,15 @@ namespace DishPicker.ViewModel
             new AddableProduct("Яблоко", 47, 100,"../Resources/Ingredients/apple.png"),
             new AddableProduct("Яйца", 142, 100, "../Resources/Ingredients/egg.png")
         };
-
         private ObservableCollection<AddableProduct> _currentAddableProducts;
         public ObservableCollection<AddableProduct> CurrentAddableProducts { get => _currentAddableProducts; set => Set(ref _currentAddableProducts, value); }
+        private ObservableCollection<AddableProduct> _currentAddablePurchases;
+        public ObservableCollection<AddableProduct> CurrentAddablePurchases { get => _currentAddablePurchases; set => Set(ref _currentAddablePurchases, value); }
+
+        #endregion
+
+
+        #region Время и дата
 
         private string _time;
         private string _day;
@@ -67,11 +81,36 @@ namespace DishPicker.ViewModel
         public string Time { get => _time; set => Set(ref _time, value); }
         public string Day { get => _day; set => Set(ref _day, value); }
 
+        private static string ConvertDay()
+        {
+            return DateTime.Now.ToString("dddd") switch
+            {
+                "понедельник" => "ПН",
+                "вторник" => "ВТ",
+                "среда" => "СР",
+                "четверг" => "ЧТ",
+                "пятница" => "ПТ",
+                "суббота" => "СБ",
+                "воскресенье" => "ВС",
+                _ => "ХЗ",
+            };
+        }
+
+        #endregion
+
+
+        #region Поля текущих продуктов
+
         private Product _selectedProduct;
         public Product SelectedProduct { get => _selectedProduct; set => Set(ref _selectedProduct, value); }
 
         private int _countProduct = 100;
         public int CountProduct { get => _countProduct; set => Set(ref _countProduct, value); }
+
+        #endregion
+
+
+        #region Команды и функции
 
         public ICommand OnAddCommand => new RelayCommand(OnAdd, _ => ProductsCurrent.Count < 25);
 
@@ -88,23 +127,45 @@ namespace DishPicker.ViewModel
             }
         }
 
-        public void OnCalcAddableProduct()
+        public void OnCalcAddableList(string type)
         {
-            CurrentAddableProducts = new ObservableCollection<AddableProduct>(_productsList);
-            foreach (var productCurrent in ProductsCurrent)
+            if (type == "Product")
             {
-                foreach (var newProduct in CurrentAddableProducts)
+                CurrentAddableProducts = new ObservableCollection<AddableProduct>(_productsList.Select(obj => obj.Clone()));
+                foreach (var productCurrent in ProductsCurrent)
                 {
-                    if (productCurrent.Name == newProduct.Name)
+                    foreach (var newProduct in CurrentAddableProducts)
                     {
-                        newProduct.Ischecked = true;
+                        if (productCurrent.Name == newProduct.Name)
+                        {
+                            newProduct.Ischecked = true;
+                        }
+                    }
+                }
+            }
+
+            if (type == "Purchase")
+            {
+                CurrentAddablePurchases = new ObservableCollection<AddableProduct>(_productsList.Select(obj => obj.Clone()));
+                foreach (var productCurrent in PurchasesCurrent)
+                {
+                    foreach (var newProduct in CurrentAddablePurchases)
+                    {
+                        if (productCurrent.Name == newProduct.Name)
+                        {
+                            newProduct.Ischecked = true;
+                        }
                     }
                 }
             }
         }
 
-        // Конструктор
-        public MainViewModel() 
+        #endregion
+
+
+        #region Конструктор
+       
+        public MainViewModel()
         {
             // Время
             var timer = new System.Windows.Threading.DispatcherTimer();
@@ -116,23 +177,9 @@ namespace DishPicker.ViewModel
             _time = DateTime.Now.ToString("HH:mm");
             _day = ConvertDay();
 
-            //for (var i = 0; i < 40; i++)
-            //    ProductsCurrent.Add(new Product("",111,111,"../Resources/orange.png"));
-        }
 
-        private static string ConvertDay()
-        {
-            return DateTime.Now.ToString("dddd") switch
-            {
-                "понедельник" => "ПН",
-                "вторник" => "ВТ",
-                "среда" => "СР",
-                "четверг" => "ЧТ",
-                "пятница" => "ПТ",
-                "суббота" => "СБ",
-                "воскресенье" => "ВС",
-                _ => "ХЗ",
-            };
         }
+        #endregion
+
     }
 }

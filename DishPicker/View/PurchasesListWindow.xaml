@@ -1,0 +1,90 @@
+﻿<Window x:Class="DishPicker.PurchasesListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DishPicker"
+        xmlns:uc="clr-namespace:DishPicker.UserControls"
+        mc:Ignorable="d"
+        Title="DishPicker" 
+        Height="750" Width="400"
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Poppins SemiBold" Closing="Window_Closing">
+
+    <Window.Resources>
+        <Style x:Key="BackButton" TargetType="{x:Type Button}">
+            <Setter Property="FontSize" Value="27"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Content" Value="&lt;"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Image Source="../Resources/Service/backArrow.png"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0">
+            <GradientStop Color="#212433" Offset="0.65" />
+            <GradientStop Color="#4e5164" Offset="1" />
+        </LinearGradientBrush>
+    </Window.Background>  
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <StackPanel Orientation="Horizontal">
+            <Button Margin="7,0,0,0" Style="{StaticResource BackButton}" Click="Close_Click"/>
+            <TextBlock Margin="10,0,0,0" Text="Список покупок" FontSize="25" Foreground="#b0afb4" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <Border Grid.Row="1" CornerRadius="10" Margin="5">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#27395a" Offset="0"/>
+                    <GradientStop Color="#468ec8" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="0.05*"/>
+                </Grid.RowDefinitions>
+                
+                <ScrollViewer Grid.Row="0" CanContentScroll="True" VerticalScrollBarVisibility="Hidden">
+                    <ItemsControl Margin="5" ItemsSource="{Binding PurchasesCurrent, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel ItemHeight="130" ItemWidth="83" IsItemsHost="True"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <uc:ProductUserControl MyDataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+                <Button Width="50" Grid.Row="1" Grid.Column="0" Click="AddProduct_Click">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="../Resources/Service/add.png"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
+    

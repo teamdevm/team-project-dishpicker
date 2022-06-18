@@ -25,6 +25,7 @@ namespace DishPicker
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Конструктор
         public MainWindow()
         {
             InitializeComponent();
@@ -39,8 +40,19 @@ namespace DishPicker
                     (DataContext as MainViewModel).ProductsCurrent = formatter.Deserialize(fs) as ObservableCollection<Product>;
                 }
             }
+
+            // восстановление массива из файла
+            if (File.Exists("PurchasesCurrent.xml"))
+            {
+                using (FileStream fs = new FileStream("PurchasesCurrent.xml", FileMode.OpenOrCreate))
+                {
+                    var formatter = new XmlSerializer(typeof(ObservableCollection<Product>));
+                    (DataContext as MainViewModel).PurchasesCurrent = formatter.Deserialize(fs) as ObservableCollection<Product>;
+                }
+            }
         }
 
+        // Открыть окно продуктов
         private void OpenProductWindow_Click(object sender, RoutedEventArgs e)
         {
             ProductListWindow productWindow = new ProductListWindow(DataContext);
@@ -49,6 +61,16 @@ namespace DishPicker
             productWindow.Show();
         }
 
+        // Открыть окно покупок
+        private void OpenPurchaseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            PurchasesListWindow purchasesWindow = new PurchasesListWindow(DataContext);
+            purchasesWindow.Owner = this;
+            this.Hide();
+            purchasesWindow.Show();
+        }
+
+        // При закрытии приложения
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             // сохранение массива текущих продуктов в файл
@@ -56,6 +78,13 @@ namespace DishPicker
             {
                 XmlSerializer formatter = new XmlSerializer(typeof(ObservableCollection<Product>));
                 formatter.Serialize(fs, (DataContext as MainViewModel).ProductsCurrent);
+            }
+
+            // сохранение массива текущих покупок в файл
+            using (FileStream fs = new FileStream("PurchasesCurrent.xml", FileMode.Create))
+            {
+                XmlSerializer formatter = new XmlSerializer(typeof(ObservableCollection<Product>));
+                formatter.Serialize(fs, (DataContext as MainViewModel).PurchasesCurrent);
             }
         }
     }
