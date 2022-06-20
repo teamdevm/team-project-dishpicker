@@ -152,14 +152,9 @@ namespace DishPicker.ViewModel
 
         private void OnRecipeGen(object obj)
         {
+            RecipesCurrent.Clear();
             foreach (var recipe in Recipes)
             {
-                bool skip = false;
-                foreach (var currentRecipe in RecipesCurrent)
-                    if (recipe.Equals(currentRecipe))
-                        skip = true;
-                if(skip)
-                    continue;
                 bool goodRecipe = true;
                 foreach (var ingredient in recipe.Ingredients)
                 {
