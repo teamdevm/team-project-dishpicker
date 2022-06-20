@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DishPicker.Model
 {
-    class Ingredient
+    public class Ingredient
     {
         //Переходное состояние из продукта в рецепт
 
@@ -13,6 +13,8 @@ namespace DishPicker.Model
         
         // Количество
         public int Amount { get; set; }
+
+        public string Izm { get; set; } = "гр.";
 
         // Конструктор
         public Ingredient(Product product, int amount)

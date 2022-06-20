@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using DishPicker.Model;
 using DishPicker.ViewModel;
 using DishPicker.Command;
+using DishPicker.View;
 
 namespace DishPicker.UserControls
 {

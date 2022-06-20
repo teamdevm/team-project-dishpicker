@@ -25,50 +25,71 @@ namespace DishPicker.ViewModel
         public ObservableCollection<Product> PurchasesCurrent { get => _purchasesCurrent; set => Set(ref _purchasesCurrent, value); }
 
         // Список продуктов, которые можно использовать
-        private readonly List<AddableProduct> _productsList = new List<AddableProduct>()
+        private static readonly List<AddableProduct> _productsList = new List<AddableProduct>()
         {
-            new AddableProduct("Апельсин", 38, 100, "../Resources/Ingredients/orange.png"),
-            new AddableProduct("Баклажаны", 24, 100, "../Resources/Ingredients/eggplant.png"),
-            new AddableProduct("Бананы",91,100,"../Resources/Ingredients/banana.png"),
-            new AddableProduct("Болгарский перец", 26, 100, "../Resources/Ingredients/paprika.png"),
-            new AddableProduct("Броколли", 34, 100, "../Resources/Ingredients/brokolly.png"),
-            new AddableProduct("Гранат", 52, 100, "../Resources/Ingredients/granate.png"),
-            new AddableProduct("Груша", 42, 100, "../Resources/Ingredients/pear.png"),
-            new AddableProduct("Йогурт", 51, 100, "../Resources/Ingredients/yogurt.png"),
-            new AddableProduct("Кабачки", 20, 100, "../Resources/Ingredients/zucchini.png"),
-            new AddableProduct("Капуста", 27, 100, "../Resources/Ingredients/cabbage.png"),
-            new AddableProduct("Картофель", 80, 100, "../Resources/Ingredients/potato.png"),
-            new AddableProduct("Киви", 46, 100, "../Resources/Ingredients/qiwi.png"),
-            new AddableProduct("Клубника", 41, 100, "../Resources/Ingredients/strawberry.png"),
-            new AddableProduct("Красный лук", 43, 100, "../Resources/Ingredients/red onion.png"),
-            new AddableProduct("Кукуруза", 69, 100, "../Resources/Ingredients/corn.png"),
-            new AddableProduct("Мандарин", 38, 100, "../Resources/Ingredients/mandarine.png"),
-            new AddableProduct("Молоко", 42, 100, "../Resources/Ingredients/milk.png"),
-            new AddableProduct("Морковь", 34, 100, "../Resources/Ingredients/carrots.png"),
-            new AddableProduct("Огурцы", 14, 100, "../Resources/Ingredients/cucumbers.png"),
-            new AddableProduct("Пекинская капуста", 16, 100, "../Resources/Ingredients/lettuce.png"),
-            new AddableProduct("Петрушка", 23, 100, "../Resources/Ingredients/parsley.png"),
-            new AddableProduct("Подсолнечное масло", 900, 100, "../Resources/Ingredients/oil.png"),
-            new AddableProduct("Помидор", 23, 100, "../Resources/Ingredients/tomato.png"),
-            new AddableProduct("Редис", 16, 100, "../Resources/Ingredients/radish.png"),
-            new AddableProduct("Салат айсберг", 14, 100, "../Resources/Ingredients/iceberg.png"),
-            new AddableProduct("Сахар", 399, 100, "../Resources/Ingredients/sugar.png"),
-            new AddableProduct("Свекла", 50, 100, "../Resources/Ingredients/beets.png"),
-            new AddableProduct("Сливочное масло", 748, 100, "../Resources/Ingredients/butter.png"),
-            new AddableProduct("Соль", 0, 100, "../Resources/Ingredients/salt.png"),
-            new AddableProduct("Сыр", 350, 100, "../Resources/Ingredients/cheese.png"),
-            new AddableProduct("Тыква", 20, 100, "../Resources/Ingredients/pumpkin.png"),
-            new AddableProduct("Чеснок", 46, 100, "../Resources/Ingredients/garlic.png"),
-            new AddableProduct("Чили", 40, 100, "../Resources/Ingredients/chili.png"),
-            new AddableProduct("Шампиньоны", 27, 100, "../Resources/Ingredients/mushrooms.png"),
-            new AddableProduct("Шпинат", 16, 100, "../Resources/Ingredients/spinach.png"),
-            new AddableProduct("Яблоко", 47, 100,"../Resources/Ingredients/apple.png"),
-            new AddableProduct("Яйца", 142, 100, "../Resources/Ingredients/egg.png")
+            new AddableProduct("Апельсин", 38, 100, "../Resources/Ingredients/orange.png"),//0
+            new AddableProduct("Баклажаны", 24, 100, "../Resources/Ingredients/eggplant.png"),//1
+            new AddableProduct("Бананы",91,100,"../Resources/Ingredients/banana.png"),//2
+            new AddableProduct("Болгарский перец", 26, 100, "../Resources/Ingredients/paprika.png"),//3
+            new AddableProduct("Броколли", 34, 100, "../Resources/Ingredients/brokolly.png"),//4
+            new AddableProduct("Гранат", 52, 100, "../Resources/Ingredients/granate.png"),//5
+            new AddableProduct("Груша", 42, 100, "../Resources/Ingredients/pear.png"),//6
+            new AddableProduct("Йогурт", 51, 100, "../Resources/Ingredients/yogurt.png"),//7
+            new AddableProduct("Кабачки", 20, 100, "../Resources/Ingredients/zucchini.png"),//8
+            new AddableProduct("Капуста", 27, 100, "../Resources/Ingredients/cabbage.png"),//9
+            new AddableProduct("Картофель", 80, 100, "../Resources/Ingredients/potato.png"),//10
+            new AddableProduct("Киви", 46, 100, "../Resources/Ingredients/qiwi.png"),//11
+            new AddableProduct("Клубника", 41, 100, "../Resources/Ingredients/strawberry.png"),//12
+            new AddableProduct("Красный лук", 43, 100, "../Resources/Ingredients/red onion.png"),//13
+            new AddableProduct("Кукуруза", 69, 100, "../Resources/Ingredients/corn.png"),//14
+            new AddableProduct("Мандарин", 38, 100, "../Resources/Ingredients/mandarine.png"),//15
+            new AddableProduct("Молоко", 42, 100, "../Resources/Ingredients/milk.png"),//16
+            new AddableProduct("Морковь", 34, 100, "../Resources/Ingredients/carrots.png"),//17
+            new AddableProduct("Огурцы", 14, 100, "../Resources/Ingredients/cucumbers.png"),//18
+            new AddableProduct("Пекинская капуста", 16, 100, "../Resources/Ingredients/lettuce.png"),//19
+            new AddableProduct("Петрушка", 23, 100, "../Resources/Ingredients/parsley.png"),//20
+            new AddableProduct("Подсолнечное масло", 900, 100, "../Resources/Ingredients/oil.png"),//21
+            new AddableProduct("Помидор", 23, 100, "../Resources/Ingredients/tomato.png"),//22
+            new AddableProduct("Редис", 16, 100, "../Resources/Ingredients/radish.png"),//23
+            new AddableProduct("Салат айсберг", 14, 100, "../Resources/Ingredients/iceberg.png"),//24
+            new AddableProduct("Сахар", 399, 100, "../Resources/Ingredients/sugar.png"),//25
+            new AddableProduct("Свекла", 50, 100, "../Resources/Ingredients/beets.png"),//26
+            new AddableProduct("Сливочное масло", 748, 100, "../Resources/Ingredients/butter.png"),//27
+            new AddableProduct("Соль", 0, 100, "../Resources/Ingredients/salt.png"),//28
+            new AddableProduct("Сыр", 350, 100, "../Resources/Ingredients/cheese.png"),//29
+            new AddableProduct("Тыква", 20, 100, "../Resources/Ingredients/pumpkin.png"),//30
+            new AddableProduct("Чеснок", 46, 100, "../Resources/Ingredients/garlic.png"),//31
+            new AddableProduct("Чили", 40, 100, "../Resources/Ingredients/chili.png"),//32
+            new AddableProduct("Шампиньоны", 27, 100, "../Resources/Ingredients/mushrooms.png"),//33
+            new AddableProduct("Шпинат", 16, 100, "../Resources/Ingredients/spinach.png"),//34
+            new AddableProduct("Яблоко", 47, 100,"../Resources/Ingredients/apple.png"),//35
+            new AddableProduct("Яйца", 142, 100, "../Resources/Ingredients/egg.png")//36
         };
         private ObservableCollection<AddableProduct> _currentAddableProducts;
         public ObservableCollection<AddableProduct> CurrentAddableProducts { get => _currentAddableProducts; set => Set(ref _currentAddableProducts, value); }
         private ObservableCollection<AddableProduct> _currentAddablePurchases;
         public ObservableCollection<AddableProduct> CurrentAddablePurchases { get => _currentAddablePurchases; set => Set(ref _currentAddablePurchases, value); }
+
+        #endregion
+
+        #region Рецепты и ингредиенты
+
+        public List<Recipe> Recipes = new List<Recipe>()
+        {
+            new Recipe("Фруктовый салат", "FruitSalad", 20, new List<Ingredient>()
+                {
+                    new Ingredient(_productsList[35], 300),
+                    new Ingredient(_productsList[6], 100),
+                    new Ingredient(_productsList[2], 100),
+                    new Ingredient(_productsList[11], 50),
+                    new Ingredient(_productsList[15], 50),
+                    new Ingredient(_productsList[5], 200),
+                    new Ingredient(_productsList[7], 50)
+                }, "../Resources/Dishes/fruit salad.png")
+        };
+
+        public ObservableCollection<Recipe> _recipesCurrent = new ObservableCollection<Recipe>();
+        public ObservableCollection<Recipe> RecipesCurrent { get => _recipesCurrent; set => Set(ref _recipesCurrent, value); }
 
         #endregion
 
@@ -124,6 +145,42 @@ namespace DishPicker.ViewModel
                     window.Owner.Show();
                     window.Close();
                 }
+            }
+        }
+
+        public ICommand OnRecipeGenCommand => new RelayCommand(OnRecipeGen);
+
+        private void OnRecipeGen(object obj)
+        {
+            foreach (var recipe in Recipes)
+            {
+                bool skip = false;
+                foreach (var currentRecipe in RecipesCurrent)
+                    if (recipe.Equals(currentRecipe))
+                        skip = true;
+                if(skip)
+                    continue;
+                bool goodRecipe = true;
+                foreach (var ingredient in recipe.Ingredients)
+                {
+                    bool goodIngredient = false;
+                    foreach (var product in ProductsCurrent)
+                    {
+                        if (product.Name == ingredient.Product.Name && product.Weight >= ingredient.Amount)
+                        {
+                            goodIngredient = true;
+                            break;
+                        }
+                    }
+                    if (!goodIngredient)
+                    {
+                        goodRecipe = false;
+                        break;
+                    }
+                }
+
+                if (goodRecipe)
+                    RecipesCurrent.Add(recipe);
             }
         }
 

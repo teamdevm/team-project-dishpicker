@@ -18,7 +18,7 @@ using System.Xml.Serialization;
 using DishPicker.Model;
 using DishPicker.ViewModel;
 
-namespace DishPicker
+namespace DishPicker.View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -68,6 +68,14 @@ namespace DishPicker
             purchasesWindow.Owner = this;
             this.Hide();
             purchasesWindow.Show();
+        }
+
+        private void OpenRecipeWindow_Click(object sender, RoutedEventArgs e)
+        {
+            RecipeListWindow RecipeListWindow = new RecipeListWindow(DataContext);
+            RecipeListWindow.Owner = this;
+            this.Hide();
+            RecipeListWindow.Show();
         }
 
         // При закрытии приложения

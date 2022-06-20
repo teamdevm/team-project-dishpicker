@@ -10,8 +10,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DishPicker.View;
 
-namespace DishPicker.View
+namespace DishPicker.UserControls
 {
     /// <summary>
     /// Логика взаимодействия для RecipeUserControl.xaml
@@ -21,6 +22,17 @@ namespace DishPicker.View
         public RecipeUserControl()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            RecipeWindow RecipeWindow = new RecipeWindow(DataContext);
+            foreach (var window in Application.Current.Windows)
+            {
+                if (window is RecipeListWindow)
+                    (window as Window).Hide();
+            }
+            RecipeWindow.Show();
         }
     }
 }

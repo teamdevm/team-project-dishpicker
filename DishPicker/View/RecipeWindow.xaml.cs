@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,9 +18,24 @@ namespace DishPicker.View
     /// </summary>
     public partial class RecipeWindow : Window
     {
-        public RecipeWindow()
+        public RecipeWindow(object dataContext)
         {
             InitializeComponent();
+            DataContext = dataContext;
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            foreach (var window in Application.Current.Windows)
+            {
+                if (window is RecipeListWindow)
+                    (window as Window).Show();
+            }
         }
     }
 }

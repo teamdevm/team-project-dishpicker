@@ -16,7 +16,7 @@ using DishPicker.UserControls;
 using DishPicker.View;
 using DishPicker.ViewModel;
 
-namespace DishPicker
+namespace DishPicker.View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

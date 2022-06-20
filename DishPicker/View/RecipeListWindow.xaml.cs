@@ -21,14 +21,13 @@ namespace DishPicker.View
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class PurchasesListWindow : Window
+    public partial class RecipeListWindow : Window
     {
         public object Mvm { get; set; }
 
-        public PurchasesListWindow(object mvm)
+        public RecipeListWindow(object mvm)
         {
             InitializeComponent();
-            Mvm = mvm;
             DataContext = mvm;
         }
 
@@ -41,14 +40,6 @@ namespace DishPicker.View
         {
             Owner.Show();
             this.Close();
-        }
-
-        private void AddProduct_Click(object sender, RoutedEventArgs e)
-        {
-            AddProductWindow productWindow = new AddProductWindow(DataContext,"Purchase");
-            productWindow.Owner = this;
-            //this.Hide();
-            productWindow.Show();
         }
     }
 }
