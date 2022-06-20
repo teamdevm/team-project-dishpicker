@@ -63,7 +63,8 @@ namespace DishPicker.ViewModel
             new AddableProduct("Шампиньоны", 27, 100, "../Resources/Ingredients/mushrooms.png"),//33
             new AddableProduct("Шпинат", 16, 100, "../Resources/Ingredients/spinach.png"),//34
             new AddableProduct("Яблоко", 47, 100,"../Resources/Ingredients/apple.png"),//35
-            new AddableProduct("Яйца", 142, 100, "../Resources/Ingredients/egg.png")//36
+            new AddableProduct("Яйца", 142, 100, "../Resources/Ingredients/egg.png"),//36
+            new AddableProduct("Мука", 342, 100, "../Resources/Ingredients/flour.png")//37
         };
         private ObservableCollection<AddableProduct> _currentAddableProducts;
         public ObservableCollection<AddableProduct> CurrentAddableProducts { get => _currentAddableProducts; set => Set(ref _currentAddableProducts, value); }
@@ -76,16 +77,38 @@ namespace DishPicker.ViewModel
 
         public List<Recipe> Recipes = new List<Recipe>()
         {
-            new Recipe("Фруктовый салат", "FruitSalad", 20, new List<Ingredient>()
+            new Recipe(
+                "Фруктовый салат", "FruitSalad", 20, new List<Ingredient>()
                 {
-                    new Ingredient(_productsList[35], 300),
-                    new Ingredient(_productsList[6], 100),
-                    new Ingredient(_productsList[2], 100),
-                    new Ingredient(_productsList[11], 50),
-                    new Ingredient(_productsList[15], 50),
-                    new Ingredient(_productsList[5], 200),
-                    new Ingredient(_productsList[7], 50)
-                }, "../Resources/Dishes/fruit salad.png")
+                    new Ingredient(_productsList[35], 150),
+                    new Ingredient(_productsList[6], 150),
+                    new Ingredient(_productsList[2], 150),
+                    new Ingredient(_productsList[11], 150),
+                    new Ingredient(_productsList[15], 150),
+                    new Ingredient(_productsList[5], 100),
+                    new Ingredient(_productsList[7], 250)
+                }, "../Resources/Dishes/fruit salad.png"),
+            new Recipe(
+                "Яичные блины", "EggPancakes", 20, new List<Ingredient>()
+                {
+                    new Ingredient(_productsList[36], 250),
+                    new Ingredient(_productsList[16], 100),
+                    new Ingredient(_productsList[37], 40),
+                    new Ingredient(_productsList[27], 30),
+                    new Ingredient(_productsList[25], 15),
+                    new Ingredient(_productsList[28], 2)
+                }, "../Resources/Dishes/egg pancakes.png"),
+            new Recipe(
+                "Омлет с кабачками", "Omlet", 40, new List<Ingredient>()
+                {
+                    new Ingredient(_productsList[36], 250),
+                    new Ingredient(_productsList[8], 250),
+                    new Ingredient(_productsList[22], 200),
+                    new Ingredient(_productsList[31], 15),
+                    new Ingredient(_productsList[28], 2),
+                    new Ingredient(_productsList[20], 10),
+                    new Ingredient(_productsList[21], 15)
+                }, "../Resources/Dishes/omlet.png")
         };
 
         public ObservableCollection<Recipe> _recipesCurrent = new ObservableCollection<Recipe>();

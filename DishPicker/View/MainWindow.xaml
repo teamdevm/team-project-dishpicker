@@ -13,9 +13,6 @@
         WindowStartupLocation="CenterScreen"
         FontFamily="../Fonts/#Poppins SemiBold" Closing="Window_Closing">
     
-    <Window.DataContext>
-        <vm:MainViewModel/>
-    </Window.DataContext>
 
     <Window.Background>
         <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0">

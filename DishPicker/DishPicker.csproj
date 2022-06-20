@@ -29,6 +29,7 @@
     <None Remove="Resources\Ingredients\cucumbers.png" />
     <None Remove="Resources\Ingredients\egg.png" />
     <None Remove="Resources\Ingredients\eggplant.png" />
+    <None Remove="Resources\Ingredients\flour.png" />
     <None Remove="Resources\Ingredients\garlic.png" />
     <None Remove="Resources\Ingredients\granate.png" />
     <None Remove="Resources\Ingredients\iceberg.png" />
@@ -67,6 +68,7 @@
     <Resource Include="Resources\Dishes\egg pancakes.png" />
     <Resource Include="Resources\Dishes\fruit salad.png" />
     <Resource Include="Resources\Dishes\omlet.png" />
+    <Resource Include="Resources\Ingredients\flour.png" />
     <Resource Include="Resources\Service\add.png" />
     <Resource Include="Resources\Service\backArrow.png" />
     <Resource Include="Resources\Service\check.png" />
